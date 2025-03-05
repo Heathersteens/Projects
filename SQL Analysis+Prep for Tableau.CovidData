@@ -1,3 +1,8 @@
+--Datasets in other file in rep.
+--Tableau presentaion--
+https://public.tableau.com/app/profile/heather.steensma/viz/CovidDataAnalysis_17409208618870/Dashboard1
+
+
 select *
 from portfolio_project_1..CovidDeaths
 where continent is not null
