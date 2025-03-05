@@ -7,7 +7,9 @@
 -- 1. Remove duplicates
 -- 2. Stadardize the data
 -- 3. Null values or blank values
--- 4. Remove any columns
+-- 4. Remove any columns I dont need
+
+
 SELECT*
 FROM layoffs;
 
