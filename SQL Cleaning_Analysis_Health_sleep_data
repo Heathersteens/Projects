@@ -1,0 +1,113 @@
+Kaggle Dataset
+--https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset--
+
+--Cleaning and Analyzing the dataset--
+
+select *
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+
+select Gender, Age, [Sleep Duration] , [Quality of Sleep], [Stress Level]
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+
+--Checking for dups--
+SELECT [Person ID], COUNT(*) as duplicate_count
+FROM Sleep_Health..Sleep_health_and_lifestyle_data$
+GROUP BY [Person ID]
+HAVING COUNT(*) > 1;
+
+
+--Changing labels that are similar to the same name--
+UPDATE Sleep_Health..Sleep_health_and_lifestyle_data$
+SET [BMI Category] = 'Overweight'
+WHERE [BMI Category] = 'Obese';
+
+UPDATE Sleep_Health..Sleep_health_and_lifestyle_data$
+SET [BMI Category] = 'Normal'
+WHERE [BMI Category] = 'Normal Weight';
+
+--Changing capitilization to "proper" in bmi column--
+UPDATE Sleep_Health..Sleep_health_and_lifestyle_data$
+SET [BMI Category] = UPPER(LEFT([BMI Category], 1)) + LOWER(SUBSTRING([BMI Category], 2, LEN([BMI Category]) - 1));
+
+select *
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+  
+
+--Analyzing which occupations have the highest stress levels and what type of sleep--
+select Occupation, AVG([Stress Level]) as avg_stress_level, AVG([Quality of Sleep]) as avg_sleep_level
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+group by Occupation
+
+
+--Comparing stress and sleep levels betewen genders--
+select Gender, AVG([Stress Level]) as avg_stress_level, AVG([Quality of Sleep]) as avg_sleep_level
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+group by Gender
+
+--comparing stress level and physical activity--
+select [Stress Level], [Quality of Sleep], [Physical Activity Level], [BMI Category]
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+
+--Checking if correlation with bmi and stress--
+select AVG([Stress Level]) as avg_stress_level, [BMI Category]
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+group by [BMI Category]
+
+
+--Checking if correlation with Age and stress/sleep--
+select Age, 
+AVG([Stress Level]) as avg_stress_level, 
+AVG([Quality of Sleep]) as avg_sleep_level
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+group by Age
+order by avg_stress_level DESC
+
+
+
+--sleep disorders and stress--
+select Occupation, [Sleep Disorder], 
+AVG([Stress Level]) as avg_stress
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+group by Occupation, [Sleep Disorder]
+
+
+--activity and stress--
+select [Physical Activity Level],
+AVG([Stress Level]) as avg_stress , 
+AVG([Quality of Sleep]) as avg_sleep_level
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+group by [Physical Activity Level]
+
+
+select *
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+where Occupation = 'Software Engineer'
+
+
+select Occupation, 
+avg([Stress Level]) as avg_stress_level, 
+avg([Physical Activity Level]) as avg_activity_level, 
+avg([Sleep Duration]) as avg_sleep_time, 
+avg([Quality of Sleep]) as avg_sleep_quality
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+group by Occupation
+order by avg_stress_level
+
+select Occupation, 
+count(Occupation) as number_in_field
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+group by Occupation
+order by number_in_field
+
+
+
+select *
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+where Occupation = 'Nurse'
+
+
+
+select Occupation, AVG([Physical Activity Level]) as avg_activity, AVG([Stress Level]) as avg_stress_level
+from Sleep_Health..Sleep_health_and_lifestyle_data$
+group by Occupation
+order by avg_activity
