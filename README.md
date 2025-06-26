@@ -1,6 +1,6 @@
 # My Parking Solution Project
 
-watch it directly on [Vimeo]([https://vimeo.com/123456789](https://vimeo.com/1096613313/f9cfb252bc))
+watch it directly on [Vimeo] https://vimeo.com/1096613313/f9cfb252bc
 
 Power Platform project for regulating parking space allowance at a high school. 
 Model driven app for admin or school employees to create or edit vehicles, requests, or inspections.
