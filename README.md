@@ -7,3 +7,7 @@ Model driven app for admin or school employees to create or edit vehicles, reque
 Canvas app for inspections to be made of which cars are parked in the lot and if they have requests. 
 Automated email notification sent out to notify car owner of their request being submitted.
 BI report showing valid and invalid parking over time and according to specific cars.
+
+
+
+Data provided through Microsoft Powerup
